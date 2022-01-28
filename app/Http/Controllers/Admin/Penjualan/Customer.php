@@ -103,6 +103,9 @@ class Customer extends Controller
     public function invoice($id)
     {
         $data = PenjualanCustomer::findOrFail($id);
+
+        $this->extend();
+
         $pdf = PDF::loadView('admin.penjualan.customer.invoice', compact('data'));
         return $pdf->stream('Faktur Penjualan ' . $data->id . '.pdf');
     }
